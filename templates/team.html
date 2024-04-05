@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Team Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            margin: 0;
+            background-color: #2c2c2c;
+            font-family: "Gill Sans Extrabold", sans-serif;
+            color: #ffffff;
+        }
+
+        h1 {
+            color: #ffffff;
+            text-align: center;
+            margin: 40px 0;
+            font-family: "Josefin Sans", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        h3 {
+            color: transparent;
+            background-image: linear-gradient(to right, #03001e, #7303c0, #ec38bc, #fdeff9);
+            -webkit-background-clip: text;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        .navbar-color-black {
+            background-color: #2c2c2c;
+        }
+
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
+            max-width: 1200px;
+            margin: 100px auto;
+            gap: 50px;
+        }
+
+
+        .left-box {
+            flex: 1;
+        }
+
+        .team-title {
+            color: transparent;
+            background-image: linear-gradient(to right, #dd5e89, #f7bb97);
+            -webkit-background-clip: text;
+            background-clip: text;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .right-box {
+            flex: 2;
+        }
+
+        .img-logo {
+            max-width: 50%;
+            max-height: 50%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-color-black">
+        <a class="navbar-brand" href="#">Strawberry Monitor</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}">• Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('model') }}">• Model</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('team') }}">• Team <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <h1>Team</h1>
+    <div class="main-container">
+        <div class="left-box">
+            <h3 class="team-title"> Objective </h3>
+            <h5 class="paragraph">
+                We aim to enhance efficiency, precision, and safety in the process of spraying pesticides by developing
+                the strawberry
+                pesticide spraying robot. The robot will offer functions including mobile control via mobile platform,
+                autonomous
+                operation to navigate through the strawberry field automatically, obstacle avoidance, adjustable nozzle
+                to suit plants'
+                height and computer vision to identify specific areas of the strawberry plants that require pesticide
+                treatment.
+            </h5>
+        </div>
+        <div class="right-box">
+            <img src="/static/logo.png" alt="F1 curve" class="img-logo">
+        </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</html>

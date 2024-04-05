@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Strawberry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            margin: 0;
+            background-color: #2c2c2c;
+            font-family: "Gill Sans Extrabold", sans-serif;
+            color: #ffffff;
+        }
+
+        h1 {
+            color: #ffffff;
+            text-align: center;
+            margin: 40px 0;
+            font-family: "Josefin Sans", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        .model-results-title {
+            color: transparent;
+            background-image: linear-gradient(to right, #f1f2b5, #135058);
+            -webkit-background-clip: text;
+            background-clip: text;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .today-weather-title {
+            color: transparent;
+            background-image: linear-gradient(to right, #dd5e89, #f7bb97);
+            -webkit-background-clip: text;
+            background-clip: text;
+            display: inline-block;
+            margin-bottom: 20px;            
+        }
+
+        .main-container {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: flex-start;
+            width: 100%;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        .content,
+        #modelResults,
+        .info-container {
+            flex: 1;
+            margin: 10px;
+            background-color: #000000;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .content {
+            order: 1;
+            padding: 20px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #000000;
+            overflow-y: auto;
+            min-height: 440px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .realtime-camera-title{
+            color: transparent;
+            background-image: linear-gradient(to right, #e1eec3, #f05053);
+            -webkit-background-clip: text;
+            background-clip: text;
+            display: inline-block;
+            margin-bottom: 20px;              
+        }
+
+        .content img {
+            width: 100%;
+            height: auto;
+            max-height: 600px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .results-box {
+            order: 2;
+            padding: 20px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #000000;
+            overflow-y: auto;
+            min-height: 440px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-container {
+            order: 3;
+            flex: 0 0 300px;
+        }
+
+        .info-box {
+            height: 200px;
+            margin-bottom: 20px;
+            padding: 15px;
+            font-size: 16px;
+        }
+
+        .navbar-color-black {
+            background-color: #2c2c2c;
+        }
+
+        @media (max-width: 800px) {
+            .main-container {
+                flex-direction: column;
+            }
+
+            .content,
+            #modelResults,
+            .info-container {
+                flex: none;
+                width: 100%;
+                order: unset;
+            }
+
+            .content img {
+                max-height: unset;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-color-black">
+        <a class="navbar-brand" href="#">Strawberry Monitor</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('index') }}">• Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('model') }}">• Model</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('team') }}">• Team</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <h1>Strawberry Video Monitor</h1>
+    <div class="main-container">
+        <div class="content">
+            <h3 class="realtime-camera-title">RealTime Camera</h3>
+            <img src="{{ url_for('video') }}" alt="Video Stream">
+        </div>
+        <div class="info-container">
+            <div class="info-box">
+                <h3 class="today-weather-title">Today Weather</h3>
+                <p>Weather: <span id="weather">Loading...</span></p>
+                <p>Temperature: <span id="temperature">Loading...</span></p>
+                <p>Time: <span id="time">Loading...</span></p>
+                <p>Location: <span id="location">Loading...</span></p>
+            </div>
+            <div class="info-box">
+                <p>Wind Speed: <span id="windSpeed">Loading...</span></p>
+                <p>Humidity: <span id="humidity">Loading...</span></p>
+                <p>Pressure: <span id="pressure">Loading...</span></p>
+                <p>Visibility: <span id="visibility">Loading...</span></p>
+            </div>
+        </div>
+        <div id="modelResults" class="results-box">
+            results
+        </div>
+    </div>
+
+
+    <script>
+       
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('time').textContent = now.toLocaleTimeString();
+        }
+        setInterval(updateTime, 1000);
+
+        async function fetchWeather() {
+            const apiKey = '5827904b1947058a001e68517ad226b4';
+            const lat = '43.256531';
+            const lon = '-79.874420';
+            const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                document.getElementById('weather').textContent = data.weather[0].main;
+                document.getElementById('temperature').textContent = data.main.temp + ' °C';
+                document.getElementById('location').textContent = data.name;
+                document.getElementById('windSpeed').textContent = data.wind.speed + ' m/s';
+                document.getElementById('humidity').textContent = data.main.humidity + ' %';
+                document.getElementById('pressure').textContent = data.main.pressure + ' hPa';
+                document.getElementById('visibility').textContent = data.visibility + ' m';
+            } catch (error) {
+                console.error('Failed to fetch weather data:', error);
+            }
+        }
+        fetchWeather(); 
+    </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+    <script type="text/javascript">
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        socket.on('model_result', function (msg) {
+            var resultsDiv = document.getElementById('modelResults');
+            resultsDiv.innerHTML = formatModelResults(msg.data);
+        });
+
+        function formatModelResults(data) {
+            formattedHtml = "<p class='low-confidence-warning'> Warning: Mold Strawberry Detected. </p>"
+            var formattedHtml = "<h3 class='model-results-title'>Model Results</h3>";
+            formattedHtml += "<p>Processing Time: " + data.time.toFixed(2) + " seconds</p>";
+            formattedHtml += "<p>Image Size: Width " + data.image.width + ", Height " + data.image.height + "</p>";
+            formattedHtml += "<p class='predication-title'>Predictions:</p><ul>";
+            
+            var lowConfidenceWarningShown = false; 
+
+            if (data.predictions && data.predictions.length > 0) {
+                data.predictions.forEach(function (pred) {
+                    formattedHtml += "<li>";
+                    formattedHtml += "Position - x: " + pred.x + ", y: " + pred.y;
+                    formattedHtml += ", Width: " + pred.width + ", Height: " + pred.height;
+                    formattedHtml += ", Confidence: " + (pred.confidence * 100).toFixed(2) + "%";
+                    formattedHtml += ", Class: " + pred.class;
+                    formattedHtml += " (ID: " + pred.class_id + ")"; 
+                    // healthy id 4, mold id 6 
+                    formattedHtml += "</li>";
+
+                    if (pred.id == 6 && !lowConfidenceWarningShown) {
+                        formattedHtml += "<div class='low-confidence-warning'>Warning: Mold Strawberry Detected.</div>";
+                        lowConfidenceWarningShown = true;
+                    }
+
+                });
+                
+                formattedHtml += "</ul>";
+
+            } else {
+
+                formattedHtml += "<p>No predictions detected.</p>";
+            }
+
+            return formattedHtml;
+        }
+    </script>
+
+</body>
+
+</html>
