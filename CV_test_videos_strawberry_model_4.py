@@ -1,4 +1,4 @@
-import cv2  # 导入OpenCV库
+import cv2  
 import numpy as np
 import tensorflow as tf
 import time 
@@ -32,20 +32,17 @@ stream_url = f'http://{ip_address}:{port}/stream'
 
 try:
     while True:
-        time.sleep(0.5)  # 每两秒处理一次
+        time.sleep(0.5) 
         ret, frame = cap.read()
         if not ret:
-            break  # 如果没有捕获到帧，跳出循环
+            break  
 
-        # 预处理帧
         image = cv2.resize(frame, (input_details[0]['shape'][2], input_details[0]['shape'][1]))
         image = np.expand_dims(image, axis=0).astype(np.float32)
 
-        # 应用模型
         interpreter.set_tensor(input_details[0]['index'], image)
         interpreter.invoke()
 
-        # 获取推理结果
         output_data = interpreter.get_tensor(output_details[0]['index'])
 
         if output_data <= 0.25:
@@ -56,14 +53,12 @@ try:
             #arduino.write(b'L')
             print(f"Sent value is {b'L'}, Model data value is {output_data}")
                             
-        # 显示帧
         cv2.imshow('Video', frame)
-        if cv2.waitKey(1) & 0xFF == ord('q'):  # 按'q'键退出
+        if cv2.waitKey(1) & 0xFF == ord('q'):  
             break
 
 except KeyboardInterrupt:
     pass
 
-# 释放资源
 cap.release()
 cv2.destroyAllWindows()
