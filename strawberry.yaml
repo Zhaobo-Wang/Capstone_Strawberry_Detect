@@ -1,0 +1,11 @@
+
+name: Strawberry Dataset
+
+nc: 12  
+names: ['drought flower', 'healthy', 'leaf', 'mold', 'flower', 'stem', 'grass', 'greyleaf', 'droughleaf', 'drought stem', 'grass', 'strawberry']  
+
+
+train: D:/McMaster/4OI6/Train_Strawberry_Dataset_Final_Version/YOLO/images/train  
+val: D:/McMaster/4OI6/Train_Strawberry_Dataset_Final_Version/YOLO/images/val  
+
+
