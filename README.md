@@ -7,7 +7,7 @@ This project leverages computer vision and deep learning technologies to develop
 
 ### Monitoring Interface:
 
-![image1 description](md_Image/Image5.png)
+![image1 description](md_Image/Image5.PNG)
 Implemented a high-performance real-time video processing system for strawberry detection;<br>
 Utilizes advanced image processing techniques with OpenCV and Python to detect strawberries in live video feeds;<br>
 Optimized video stream bandwidth through advanced data compression techniques;<br>
@@ -17,7 +17,7 @@ Developed a responsive front-end interface, integrating WebSocket communication 
 通过数据压缩技术优化了视频流带宽；<br>
 开发了一个响应式前端界面，整合了 WebSocket 通信，以确保后端与前端之间的无缝实时数据传输，便于实时更新和增强用户互动。
 
-![image1 description](md_Image/Image6.png)
+![image1 description](md_Image/Image6.PNG)
 Real-Time data (JSON format) return to user monitoring screen;<br>
 Features multiple API endpoints managed via Flask to handle real-time data transactions and system commands;<br>
 Offers a dynamic and user-friendly front-end, built with React.js, which provides real-time data visualization and interaction through WebSocket communication;<br>
@@ -28,19 +28,19 @@ Offers a dynamic and user-friendly front-end, built with React.js, which provide
 
 ### Model Algorithm Page:
 
-![image1 description](md_Image/Image4.png)
+![image1 description](md_Image/Image4.PNG)
 Leveraged a YOLOv8 deep learning model to differentiate between healthy / moldy strawberry;<br>
 利用 YOLOv8 深度学习模型区分健康和霉变的草莓；
 
 ### Model Training Shown:
 
-![image1 description](md_Image/Image2.png)
+![image1 description](md_Image/Image2.PNG)
 Training on a dataset of 3225 annotated images to ensure high precision and recall across multiple classes;<br>
 Deploys the trained model for real-time and batch inference, enhancing the capability of monitoring systems to detect and react to health issues immediately<br>
 在包含 3225 张标注图像的数据集上进行训练，以确保多个类别中的高精度和高召回率；<br>
 部署训练好的模型进行实时和批量推理，增强监控系统检测和立即响应健康问题的能力。
 
-![image1 description](md_Image/Image3.png)
+![image1 description](md_Image/Image3.PNG)
 The system automatically initiates real-time irrigation based on health detection via COM serial communication to Arduino;<br>
 Integrates COM serial communication to automate irrigation and pesticide spraying based on the detected health condition of the strawberries, significantly improving response times and effectiveness of treatment.<br>
 
