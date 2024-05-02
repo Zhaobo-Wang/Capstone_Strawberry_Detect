@@ -8,11 +8,12 @@ This project leverages computer vision and deep learning technologies to develop
 ### Monitoring Interface:
 
 ![image1 description](md_Image/Image5.PNG)
+Differentiate between healthy / moldy strawberry;<br>
 Implemented a high-performance real-time video processing system for strawberry detection;<br>
 Utilizes advanced image processing techniques with OpenCV and Python to detect strawberries in live video feeds;<br>
 Optimized video stream bandwidth through advanced data compression techniques;<br>
 Developed a responsive front-end interface, integrating WebSocket communication to ensure seamless real-time data transfer between the backend and frontend, facilitating immediate updates and interactive user engagement;<br>
-
+区分出不同的草莓:健康和发霉的草莓; 在图中有不同的标签 <br>
 实现了一个用于草莓检测的高性能实时视频处理系统；利用 OpenCV 和 Python 的图像处理技术在实时视频流中检测草莓；<br>
 通过数据压缩技术优化了视频流带宽；<br>
 开发了一个响应式前端界面，整合了 WebSocket 通信，以确保后端与前端之间的无缝实时数据传输，便于实时更新和增强用户互动。
