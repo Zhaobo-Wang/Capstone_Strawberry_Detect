@@ -2,7 +2,7 @@
 
 Monitoring Interface:
 
-![image1 description](md_Image/image1.png)
+![image1 description](md_Image/Image1.png)
 
 
 This is the final year capstone project
