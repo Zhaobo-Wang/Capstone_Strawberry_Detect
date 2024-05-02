@@ -4,15 +4,15 @@ import tensorflow as tf
 import time 
 import serial
 
-# 加载TFLite模型
+
 interpreter = tf.lite.Interpreter(model_path="D:/McMaster/4OI6/strawberry_model.tflite")
 interpreter.allocate_tensors()
 
 input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
 
-# 打开摄像头
-cap = cv2.VideoCapture(0)  # 0是默认摄像头的索引
+
+cap = cv2.VideoCapture(0)  
 
 
 '''
